@@ -1,10 +1,11 @@
-package com.marcantonyc.mach.ui.theme.composable
+package com.marcantonyc.mach.ui.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -12,7 +13,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -29,11 +29,14 @@ import androidx.compose.ui.unit.sp
 import com.marcantonyc.mach.ui.theme.MachTheme
 
 @Composable
-fun SquareCard(title: String = "Default title", icon: ImageVector = Icons.Default.AccountCircle){
+fun RectangleCard(
+    title: String = "Default title",
+    description: String = "Default description",
+    icon: ImageVector = Icons.Default.AccountCircle, ){
     Card(
         modifier = Modifier
-            .size(120.dp)
-            ,
+            .fillMaxWidth()
+            .height(100.dp),
         elevation = CardDefaults.elevatedCardElevation(
             defaultElevation = 10.dp
         ),
@@ -41,15 +44,16 @@ fun SquareCard(title: String = "Default title", icon: ImageVector = Icons.Defaul
             containerColor = MaterialTheme.colorScheme.onSurface,
         )
     ){
-        Column(
-            horizontalAlignment = Alignment.Start,
+        Row(
             modifier = Modifier
                 .weight(1f)
                 .padding(
-                    horizontal = 4.dp,
+                    horizontal = 16.dp,
                     vertical = 8.dp
                 )
                 .background(Color.Transparent)
+            ,
+            verticalAlignment = Alignment.CenterVertically
         ) {
 
             Icon(imageVector = icon, contentDescription ="",
@@ -58,16 +62,28 @@ fun SquareCard(title: String = "Default title", icon: ImageVector = Icons.Defaul
                 tint = MaterialTheme.colorScheme.primary
 
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.size(16.dp))
 
-            Text(
-                text = title,
-                color = MaterialTheme.colorScheme.secondary,
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold
+            Column {
+                Text(
+                    text = title,
+                    color = MaterialTheme.colorScheme.secondary,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
+                    )
                 )
-            )
+                Spacer(modifier = Modifier.size(8.dp))
+                Text(
+                    text = description,
+                    color = MaterialTheme.colorScheme.tertiary,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+            }
+
         }
     }
 
@@ -76,7 +92,7 @@ fun SquareCard(title: String = "Default title", icon: ImageVector = Icons.Defaul
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewSquareCard(){
+fun PreviewRectangleCard(){
     MachTheme {
         Column(
             modifier = Modifier
@@ -86,7 +102,7 @@ fun PreviewSquareCard(){
             verticalArrangement = Arrangement.Center
 
         ) {
-            SquareCard()
+            RectangleCard()
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.marcantonyc.mach.ui.theme.composable
+package com.marcantonyc.mach.ui.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

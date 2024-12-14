@@ -1,4 +1,4 @@
-package com.marcantonyc.mach.ui.theme.composable
+package com.marcantonyc.mach.ui.composable
 
 import androidx.compose.ui.draw.clip
 

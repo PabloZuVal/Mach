@@ -1,4 +1,4 @@
-package com.marcantonyc.mach.ui.theme.navigation
+package com.marcantonyc.mach.core.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox

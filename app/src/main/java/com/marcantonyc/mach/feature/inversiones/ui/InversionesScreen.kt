@@ -22,8 +22,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.marcantonyc.mach.ui.theme.MachTheme
-import com.marcantonyc.mach.ui.theme.composable.MeetMachCard
-import com.marcantonyc.mach.ui.theme.composable.SquareCard
+import com.marcantonyc.mach.ui.composable.MeetMachCard
+import com.marcantonyc.mach.ui.composable.SquareCard
 
 @Composable
 fun InversionesScreen(){

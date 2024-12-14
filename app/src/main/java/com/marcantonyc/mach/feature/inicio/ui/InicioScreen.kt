@@ -17,10 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.marcantonyc.mach.ui.theme.MachTheme
-import com.marcantonyc.mach.ui.theme.composable.AccountCard
-import com.marcantonyc.mach.ui.theme.composable.EvolveAccountCard
-import com.marcantonyc.mach.ui.theme.composable.MeetMachCard
-import com.marcantonyc.mach.ui.theme.composable.SquareCard
+import com.marcantonyc.mach.ui.composable.AccountCard
+import com.marcantonyc.mach.ui.composable.EvolveAccountCard
+import com.marcantonyc.mach.ui.composable.MeetMachCard
+import com.marcantonyc.mach.ui.composable.SquareCard
 
 
 @Composable()

@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.marcantonyc.mach.ui.theme.MachTheme
-import com.marcantonyc.mach.ui.theme.composable.RectangleCard
-import com.marcantonyc.mach.ui.theme.composable.SquareCard
+import com.marcantonyc.mach.ui.composable.RectangleCard
+import com.marcantonyc.mach.ui.composable.SquareCard
 
 @Composable
 fun TransferenciaScreen(

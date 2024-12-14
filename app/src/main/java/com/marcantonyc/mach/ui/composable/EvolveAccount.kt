@@ -1,18 +1,15 @@
-package com.marcantonyc.mach.ui.theme.composable
+package com.marcantonyc.mach.ui.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -30,19 +27,16 @@ import androidx.compose.ui.unit.sp
 import com.marcantonyc.mach.ui.theme.MachTheme
 
 @Composable
-fun AccountCard(
-    accountName: String = "Cuenta Vista BCI 7770 19 192 981 ",
-    accountBalance: String = "$ 2.500.000"
-){
+fun EvolveAccountCard(){
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp),
+            .height(100.dp),
         elevation = CardDefaults.elevatedCardElevation(
             defaultElevation = 10.dp
         ),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onSurface,
+            containerColor = MaterialTheme.colorScheme.primary,
         )
     ){
         Row(
@@ -60,49 +54,34 @@ fun AccountCard(
 
             Column {
                 Text(
-                    text = "Mi cuenta MACH",
-                    color = MaterialTheme.colorScheme.secondary,
+                    text = "¡Evoluciona a \nCuenta Corriente!",
+                    color = MaterialTheme.colorScheme.onPrimary,
                     style = TextStyle(
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Normal
-                    )
-                )
-
-                Text(
-                    text = accountName,
-                    color = MaterialTheme.colorScheme.tertiary,
-                    style = TextStyle(
-                        fontSize = 10.sp,
+                        fontSize = 18.sp,
                         fontWeight = FontWeight.Normal
                     )
                 )
                 Spacer(modifier = Modifier.size(8.dp))
+
                 Text(
-                    text = "Saldo disponible",
-                    color = MaterialTheme.colorScheme.primary,
+                    text = "Sin costos adicionales",
+                    color = MaterialTheme.colorScheme.onPrimary,
                     style = TextStyle(
-                        fontSize = 14.sp,
+                        fontSize = 12.sp,
                         fontWeight = FontWeight.Normal
                     )
                 )
-                Text(
-                    text = accountBalance,
-                    color = MaterialTheme.colorScheme.primary,
-                    style = TextStyle(
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                )
-            }
 
+            }
             Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.End,
-            ) {
-                Icon(imageVector =
-                    Icons.Default.Share, contentDescription ="share",
-                    modifier = Modifier.size(20.dp),
-                    tint = MaterialTheme.colorScheme.tertiary
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.End
+            ){
+
+                Icon(
+                    imageVector = Icons.Default.ShoppingCart,
+                    contentDescription = "",
+                    modifier = Modifier.size(100.dp),
                 )
             }
 
@@ -113,8 +92,8 @@ fun AccountCard(
 
 @Preview
 @Composable
-fun PreviewAccountCard(){
+fun PreviewEvolveMasCard(){
     MachTheme {
-        AccountCard()
+        EvolveAccountCard()
     }
 }

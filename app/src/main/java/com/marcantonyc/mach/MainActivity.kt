@@ -14,9 +14,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.marcantonyc.mach.feature.inicio.ui.InicioScreen
 import com.marcantonyc.mach.ui.theme.MachTheme
-import com.marcantonyc.mach.ui.theme.navigation.BottomNavigationMenu
-import com.marcantonyc.mach.ui.theme.composable.TopBar
-import com.marcantonyc.mach.ui.theme.navigation.NavigationController
+import com.marcantonyc.mach.core.navigation.BottomNavigationMenu
+import com.marcantonyc.mach.ui.composable.TopBar
+import com.marcantonyc.mach.core.navigation.NavigationController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    topBar = {TopBar()},
+                    topBar = { TopBar() },
                     bottomBar = { BottomNavigationMenu(navController = navController) }
                 ) { innerPadding ->
                     Column (

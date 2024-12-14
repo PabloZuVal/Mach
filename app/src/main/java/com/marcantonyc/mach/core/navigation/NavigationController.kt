@@ -1,4 +1,4 @@
-package com.marcantonyc.mach.ui.theme.navigation
+package com.marcantonyc.mach.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
