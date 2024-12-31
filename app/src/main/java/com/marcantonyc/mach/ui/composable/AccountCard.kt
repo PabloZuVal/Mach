@@ -22,99 +22,98 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.marcantonyc.mach.R
 import com.marcantonyc.mach.ui.theme.MachTheme
 
 @Composable
 fun AccountCard(
-    accountName: String = "Cuenta Vista BCI 7770 19 192 981 ",
-    accountBalance: String = "$ 2.500.000"
+    text1: String,
+    text2: String,
+    amount: String,
+    cardHeight: Dp = 100.dp, // default height
+    backgroundColor: Color = MaterialTheme.colorScheme.onSurface
+
 ){
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp),
+            .width(320.dp)
+            .height(cardHeight),
         elevation = CardDefaults.elevatedCardElevation(
             defaultElevation = 10.dp
         ),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onSurface,
+            containerColor = backgroundColor,
         )
     ){
         Row(
             modifier = Modifier
                 .weight(1f)
                 .padding(
-                    horizontal = 16.dp,
+                    horizontal = 12.dp,
                     vertical = 16.dp
                 )
-                .background(Color.Transparent)
-            ,
+                .background(Color.Transparent),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
-
             Column {
                 Text(
-                    text = "Mi cuenta MACH",
-                    color = MaterialTheme.colorScheme.secondary,
+                    text = text1,
+                    color = Color.Black,
                     style = TextStyle(
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Normal
-                    )
-                )
-
-                Text(
-                    text = accountName,
-                    color = MaterialTheme.colorScheme.tertiary,
-                    style = TextStyle(
-                        fontSize = 10.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.Normal
                     )
                 )
                 Spacer(modifier = Modifier.size(8.dp))
                 Text(
-                    text = "Saldo disponible",
-                    color = MaterialTheme.colorScheme.primary,
+                    text = text2,
+                    color = Color.Black,
                     style = TextStyle(
-                        fontSize = 14.sp,
+                        fontSize = 12.sp,
                         fontWeight = FontWeight.Normal
                     )
                 )
+                Spacer(modifier = Modifier.size(8.dp))
                 Text(
-                    text = accountBalance,
-                    color = MaterialTheme.colorScheme.primary,
+                    text = amount,
+                    color = Color.Black,
                     style = TextStyle(
-                        fontSize = 24.sp,
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Bold
                     )
                 )
             }
-
             Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.End,
-            ) {
-                Icon(imageVector =
-                    Icons.Default.Share, contentDescription ="share",
-                    modifier = Modifier.size(20.dp),
-                    tint = MaterialTheme.colorScheme.tertiary
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.End
+            ){
+                Icon(
+                    painter = painterResource(id = R.drawable.visa_debit),
+                    contentDescription = null,
+                    modifier = Modifier.size(100.dp),
                 )
             }
-
         }
     }
-
 }
+
 
 @Preview
 @Composable
 fun PreviewAccountCard(){
     MachTheme {
-        AccountCard()
+        AccountCard(
+            text1 = "Mi tarjeta Virtual",
+            text2 = "* * * * 1234",
+            amount = "$ 1,000.00"
+        )
     }
 }
