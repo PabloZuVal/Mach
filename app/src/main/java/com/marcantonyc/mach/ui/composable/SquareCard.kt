@@ -17,10 +17,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,7 +32,13 @@ import androidx.compose.ui.unit.sp
 import com.marcantonyc.mach.ui.theme.MachTheme
 
 @Composable
-fun SquareCard(title: String = "Default title", icon: ImageVector = Icons.Default.AccountCircle){
+fun SquareCard(title: String = "Default title", iconName: String = "ic_default_icon"){
+
+    val context = LocalContext.current
+    val iconId = remember(iconName) {
+        context.resources.getIdentifier(iconName, "drawable", context.packageName)
+    }
+
     Card(
         modifier = Modifier
             .size(120.dp)
@@ -52,14 +61,13 @@ fun SquareCard(title: String = "Default title", icon: ImageVector = Icons.Defaul
                 .background(Color.Transparent)
         ) {
 
-            Icon(imageVector = icon, contentDescription ="",
-                modifier = Modifier
-                    .size(40.dp),
+            Icon(
+                painter = painterResource(id = iconId),
+                contentDescription = "",
+                modifier = Modifier.size(40.dp),
                 tint = MaterialTheme.colorScheme.primary
-
             )
             Spacer(modifier = Modifier.height(4.dp))
-
             Text(
                 text = title,
                 color = MaterialTheme.colorScheme.secondary,
