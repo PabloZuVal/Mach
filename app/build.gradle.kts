@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.marcantonyc.mach"
+    namespace = "com.pablozv.mach"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.marcantonyc.mach"
+        applicationId = "com.pablozv.mach"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
