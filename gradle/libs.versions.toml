@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.1"
+agp = "8.2.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -16,6 +16,16 @@ annotation = "1.9.1"
 constraintlayout = "2.2.0"
 lifecycleLivedataKtx = "2.8.7"
 lifecycleViewmodelKtx = "2.8.7"
+
+#THIRD PARTY
+hiltNavigationCompose ="1.1.0"
+daggerHilt = "2.48"
+retrofitVersion = "2.9.0"
+okhttp3Version = "4.11.0"
+coroutineVersion = "1.7.1"
+kotlinCompilerExtension = "1.5.1"
+ksp = "1.9.0-1.0.13"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,7 +51,22 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 
+##THIRD PARTY
+dagger-hilt-android = { group = "com.google.dagger", name="hilt-android", version.ref ="daggerHilt" }
+dagger-hilt-compiler = { group = "com.google.dagger", name="hilt-compiler", version.ref ="daggerHilt" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name="hilt-navigation-compose", version.ref ="hiltNavigationCompose" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion"}
+retrofitgson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitVersion"}
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3Version"}
+okhttp-url-connector = { group = "com.squareup.okhttp3", name = "okhttp-urlconnection", version.ref = "okhttp3Version"}
+okhttp-loggin-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3Version"}
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutineVersion"}
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+#THIRD PARTY
+hilt = { id = "com.google.dagger.hilt.android", version.ref="daggerHilt"}
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
