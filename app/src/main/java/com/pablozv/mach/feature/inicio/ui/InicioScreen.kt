@@ -97,42 +97,6 @@ fun InicioScreen(){
 
             Spacer(modifier = Modifier.height(24.dp))
 
-//            Text("Conoce MACH")
-//
-//            Row(
-//                modifier = Modifier
-//                    .horizontalScroll(state = scrollState2)
-//                    .fillMaxWidth()
-//                    .padding(vertical = 16.dp),
-//            ){
-//                Box(
-//                    Modifier.padding(end = 8.dp)
-//                        .fillMaxWidth()
-//                ){
-//                    MeetMachCard(
-//                        title = "!Empieza a cumplir tus\nmetas ahorrando",
-//
-//                        )
-//                }
-//                Box(
-//                    Modifier.padding(horizontal = 8.dp)
-//                ){
-//                    MeetMachCard()
-//                }
-//                Box(
-//                    Modifier.padding(horizontal = 8.dp)
-//                ){
-//                    MeetMachCard()
-//                }
-//                Box(
-//                    Modifier.padding(horizontal = 8.dp)
-//                ){
-//                    MeetMachCard()
-//                }
-//
-//
-//
-//            }
 
         }
     }
