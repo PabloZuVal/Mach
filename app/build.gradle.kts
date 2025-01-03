@@ -87,4 +87,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.loggin.interceptor)
     implementation(libs.coroutines)
+    implementation(libs.androidx.hilt.navigation.compose)
+
 }

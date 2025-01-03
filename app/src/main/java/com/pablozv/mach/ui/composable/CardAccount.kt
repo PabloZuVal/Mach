@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -29,7 +27,9 @@ import com.pablozv.mach.R
 import com.pablozv.mach.ui.theme.MachTheme
 
 @Composable
-fun CardAccount(){
+fun CardAccount(
+    numeroTarjetaVirtual: String
+){
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -66,7 +66,7 @@ fun CardAccount(){
                 Spacer(modifier = Modifier.size(8.dp))
 
                 Text(
-                    text = "* * * * 1234",
+                    text = numeroTarjetaVirtual.chunked(4).joinToString(" "),
                     color = MaterialTheme.colorScheme.onPrimary,
                     style = TextStyle(
                         fontSize = 12.sp,

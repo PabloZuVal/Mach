@@ -11,7 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ScrollAccounts(){
+fun ScrollAccounts(
+    saldoActual: String,
+    saldoCupoCredito: String,
+    cashback: Double,
+    saldoInversiones: String
+){
 
     val scrollState2 = rememberScrollState()
     Row(
@@ -27,7 +32,7 @@ fun ScrollAccounts(){
             AccountCard(
                 text1 = "Mi cuenta MACH",
                 text2 = "Saldo disponible",
-                amount = "$ 1,000.00"
+                amount = "$" + saldoActual
             )
         }
         Box(
@@ -36,7 +41,7 @@ fun ScrollAccounts(){
             AccountCard(
                 text1 = "Inversiones",
                 text2 = "Total inversiones",
-                amount = "$ 2,000.00"
+                amount = "$" + saldoCupoCredito
             )
         }
         Box(
@@ -45,7 +50,7 @@ fun ScrollAccounts(){
             AccountCard(
                 text1 = "Compra en cuotas",
                 text2 = "Cupo disponible",
-                amount = "$ 3,000.00"
+                amount = "$" + saldoInversiones
             )
         }
         Box(
@@ -54,7 +59,7 @@ fun ScrollAccounts(){
             AccountCard(
                 text1 = "Cashback",
                 text2 = "Montos acumulados",
-                amount = "$ 1,000.00"
+                amount = "$" + cashback.toString()
             )
         }
 

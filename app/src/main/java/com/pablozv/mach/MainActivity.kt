@@ -17,7 +17,9 @@ import com.pablozv.mach.ui.theme.MachTheme
 import com.pablozv.mach.core.navigation.BottomNavigationMenu
 import com.pablozv.mach.ui.composable.TopBar
 import com.pablozv.mach.core.navigation.NavigationController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

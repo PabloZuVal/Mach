@@ -29,14 +29,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pablozv.mach.R
 import com.pablozv.mach.ui.theme.MachTheme
 
 @Composable
-fun SquareCard(title: String = "Default title", iconName: String = "ic_default_icon"){
+fun SquareCard(title: String = "Default title", iconName: String = ""){
 
     val context = LocalContext.current
     val iconId = remember(iconName) {
-        context.resources.getIdentifier(iconName, "drawable", context.packageName)
+        if (iconName.isEmpty()) {
+           0
+        } else {
+            context.resources.getIdentifier(iconName, "drawable", context.packageName)
+        }
     }
 
     Card(
@@ -59,7 +64,7 @@ fun SquareCard(title: String = "Default title", iconName: String = "ic_default_i
         ) {
 
             Icon(
-                painter = painterResource(id = iconId),
+                painter = if(iconId != 0) painterResource(id = iconId) else painterResource(id = R.drawable.icon1),
                 contentDescription = "",
                 modifier = Modifier.size(40.dp),
                 tint = MaterialTheme.colorScheme.primary
