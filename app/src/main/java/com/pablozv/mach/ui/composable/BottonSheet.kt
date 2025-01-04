@@ -6,6 +6,7 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -22,9 +23,10 @@ fun BottomSheet(
     if (isSheetVisible) {
         ModalBottomSheet(
             modifier = Modifier
-                .padding(top= 80.dp),
+                .padding(top= 30.dp),
             onDismissRequest = onDismiss,
             sheetState = sheetState,
+            containerColor = Color.White,
             content = {
                 content?.invoke()
             }
