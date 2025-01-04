@@ -17,7 +17,6 @@ fun ScrollAccounts(
     cashback: Double,
     saldoInversiones: String
 ){
-
     val scrollState2 = rememberScrollState()
     Row(
         modifier = Modifier
