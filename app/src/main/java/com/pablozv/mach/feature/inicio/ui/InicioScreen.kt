@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -33,12 +34,17 @@ import com.pablozv.mach.ui.composable.CardAccount
 import com.pablozv.mach.ui.composable.ScrollAccounts
 import com.pablozv.mach.ui.composable.SquareCard
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.pablozv.mach.core.navigation.BottonSheetController
+import com.pablozv.mach.ui.composable.HomeCardSection
+import com.pablozv.mach.ui.composable.ScrollImages
+import com.pablozv.mach.ui.composable.ShowMore
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable()
 fun InicioScreen(
-    viewModel: InicioViewModel = hiltViewModel()
+    viewModel: InicioViewModel = hiltViewModel(),
+    bottonSheetController: BottonSheetController
 ){
     val userData by viewModel.userData.collectAsState()
 
@@ -55,251 +61,61 @@ fun InicioScreen(
                 .height(95.dp)
                 .background(MaterialTheme.colorScheme.primary)
         )
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
         ){
-            userData?.let {data ->
-                ScrollAccounts(
-                    saldoActual = data.saldo_actual.toString(),
-                    saldoCupoCredito = data.saldo_cupo_credito.toString(),
-                    cashback = data.cashback,
-                    saldoInversiones = data.saldo_inversiones.toString(),
-                )
-                EvolveAccountCard()
-                CardAccount(
-                    numeroTarjetaVirtual = data.numero_tarjeta_virtual
-                )
-
-            }
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Row {
-                Text("Que quieres hacer hoy?", modifier = Modifier.align(Alignment.CenterVertically))
-                Spacer(modifier = Modifier.weight(1f))
-                Button(
-                    onClick = { showBottomSheet = true },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onPrimary
+            item {
+                userData?.let {data ->
+                    ScrollAccounts(
+                        saldoActual = data.saldo_actual.toString(),
+                        saldoCupoCredito = data.saldo_cupo_credito.toString(),
+                        cashback = data.cashback,
+                        saldoInversiones = data.saldo_inversiones.toString(),
                     )
-                ) {
-                    Text("Ver más")
+                    EvolveAccountCard()
+                    CardAccount(
+                        numeroTarjetaVirtual = data.numero_tarjeta_virtual
+                    )
+
                 }
+                Spacer(modifier = Modifier.height(24.dp))
             }
 
-            Row(
-                modifier = Modifier
-//                    .horizontalScroll(state = scrollState)
-                    .fillMaxWidth()
-                    .padding(vertical = 16.dp),
-            ){
-                Box(
-                    Modifier.padding(end = 8.dp)
-                ){
-                    SquareCard("Compra en\nCuotas", "icon3")
-                }
-                Box(
-                    Modifier.padding(horizontal = 8.dp)
-                ){
-                    SquareCard("MACH\nPremium", "icon4")
-                }
-                Box(
-                    Modifier.padding(horizontal = 8.dp)
-                ){
-                    SquareCard("Invita y\ngana","icon5")
-                }
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Box(
-                    Modifier.padding(horizontal = 8.dp)
-                ){
-                    SquareCard("Beneficios\nBciPlus+", "icon6")
-                }
-                Box(
-                    Modifier.padding(horizontal = 8.dp)
-                ){
-                    SquareCard("Paga tus\ncuentas", "icon7")
-                }
-                Box(
-                    Modifier.padding(horizontal = 8.dp)
-                ){
-                    SquareCard("Parking\ndigital", "icon8")
-                }
-            }
+            item{
+                Row {
+                    Text("Que quieres hacer hoy?", modifier = Modifier.align(Alignment.CenterVertically))
+                    Spacer(modifier = Modifier.weight(1f))
 
-            if (showBottomSheet) {
-                ModalBottomSheet(
-                    onDismissRequest = { showBottomSheet = false },
-                    sheetState = sheetState
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp)
+                    Button(
+                        onClick = {
+                            bottonSheetController.show {
+                                Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                ){
+                                    ShowMore()
+                                }
+                            }
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            contentColor = MaterialTheme.colorScheme.onPrimary
+                        )
                     ) {
-                        Text(
-                            text = "Productos",
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = Color.Black,
-                            modifier = Modifier.padding(bottom = 16.dp)
-                        )
-
-                        // Aquí puedes añadir más SquareCards u otras opciones
-                        Row(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-//                            Text("Cuenta", modifier = Modifier.align(Alignment.CenterVertically))
-                            Box(
-                                Modifier.padding(end = 8.dp)
-                            ){
-                                SquareCard("Nueva\nOpción", "icon9")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                        }
-                        Spacer(modifier = Modifier.height(24.dp))
-                        Text(
-                            text = "Servicios",
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = Color.Black,
-                            modifier = Modifier.padding(bottom = 16.dp)
-                        )
-                        Row(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-//                            Text("Cuenta", modifier = Modifier.align(Alignment.CenterVertically))
-                            Box(
-                                Modifier.padding(end = 8.dp)
-                            ){
-                                SquareCard("Nueva\nOpción", "icon9")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                        }
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-//                            Text("Cuenta", modifier = Modifier.align(Alignment.CenterVertically))
-                            Box(
-                                Modifier.padding(end = 8.dp)
-                            ){
-                                SquareCard("Nueva\nOpción", "icon9")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(24.dp))
-                        Text(
-                            text = "AAAA",
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = Color.Black,
-                            modifier = Modifier.padding(bottom = 16.dp)
-                        )
-                        Row(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-//                            Text("Cuenta", modifier = Modifier.align(Alignment.CenterVertically))
-                            Box(
-                                Modifier.padding(end = 8.dp)
-                            ){
-                                SquareCard("Nueva\nOpción", "icon9")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                        }
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-//                            Text("Cuenta", modifier = Modifier.align(Alignment.CenterVertically))
-                            Box(
-                                Modifier.padding(end = 8.dp)
-                            ){
-                                SquareCard("Nueva\nOpción", "icon9")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-//                            Text("Cuenta", modifier = Modifier.align(Alignment.CenterVertically))
-                            Box(
-                                Modifier.padding(end = 8.dp)
-                            ){
-                                SquareCard("Nueva\nOpción", "icon9")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                            Box(
-                                Modifier.padding(horizontal = 8.dp)
-                            ){
-                                SquareCard("Otra\nOpción", "icon10")
-                            }
-                        }
-
+                        Text("Ver más")
                     }
                 }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            item {
+                HomeCardSection()
+            }
 
-
+            item {
+                ScrollImages()
+            }
         }
     }
 
@@ -310,6 +126,6 @@ fun InicioScreen(
 @Composable
 fun PreviewInicioScreen(){
     MachTheme {
-        InicioScreen()
+        InicioScreen(bottonSheetController = BottonSheetController())
     }
 }

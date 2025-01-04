@@ -14,12 +14,17 @@ import com.pablozv.mach.feature.voucher.ui.VoucherScreen
 
 
 @Composable
-fun NavigationController(navController: NavHostController){
+fun NavigationController(
+    navController: NavHostController,
+    bottonSheetController: BottonSheetController
+){
 
     val routeItem = listOf(
         NavComposable(
             route = "Inicio",
-            content = { InicioScreen() }
+            content = { InicioScreen(
+                bottonSheetController = bottonSheetController,
+            ) }
         ),
         NavComposable(
             route = "Transferir",
