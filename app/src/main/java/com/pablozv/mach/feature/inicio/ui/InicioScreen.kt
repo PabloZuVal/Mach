@@ -37,6 +37,7 @@ fun InicioScreen(
     bottonSheetController: BottonSheetController
 ){
     val userData by viewModel.userData.collectAsState()
+    val isLoading = userData == null
 
     Box(
         modifier = Modifier
@@ -54,19 +55,34 @@ fun InicioScreen(
                 .padding(16.dp)
         ){
             item {
-                userData?.let {data ->
+
+                if (isLoading){
                     ScrollAccounts(
-                        saldoActual = data.saldo_actual.toString(),
-                        saldoCupoCredito = data.saldo_cupo_credito.toString(),
-                        cashback = data.cashback,
-                        saldoInversiones = data.saldo_inversiones.toString(),
+                        saldoActual = "0",
+                        saldoCupoCredito = "0",
+                        cashback = 0.0,
+                        saldoInversiones = "0",
                     )
                     EvolveAccountCard()
                     CardAccount(
-                        numeroTarjetaVirtual = data.numero_tarjeta_virtual
+                        numeroTarjetaVirtual = "0000 0000 0000 0000"
                     )
+                } else {
+                    userData?.let {data ->
+                        ScrollAccounts(
+                            saldoActual = data.saldo_actual.toString(),
+                            saldoCupoCredito = data.saldo_cupo_credito.toString(),
+                            cashback = data.cashback,
+                            saldoInversiones = data.saldo_inversiones.toString(),
+                        )
+                        EvolveAccountCard()
+                        CardAccount(
+                            numeroTarjetaVirtual = data.numero_tarjeta_virtual
+                        )
 
+                    }
                 }
+
                 Spacer(modifier = Modifier.height(24.dp))
             }
 

@@ -20,15 +20,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pablozv.mach.R
 import com.pablozv.mach.ui.theme.MachTheme
 
 @Composable
 fun TarjetasScreen(){
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -112,17 +118,20 @@ fun TarjetasScreen(){
 
         Row(
             modifier = Modifier
-                .padding(16.dp),
+                .padding(5.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
             Icon(
-                imageVector = Icons.Default.AccountBox,
-                contentDescription = "icon",
-                modifier = Modifier
-                    .size(54.dp),
-                tint = MaterialTheme.colorScheme.primary
+                painter = painterResource(id = R.drawable.virtual_card),
+                contentDescription = "",
+                modifier = Modifier.size(65.dp),
+                tint = Color.Unspecified
             )
-            Column{
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 10.dp),
+            ){
                 Text("Tarjeta virual",
                     style = TextStyle(
                         fontSize = 12.sp,
@@ -130,7 +139,7 @@ fun TarjetasScreen(){
                         color = MaterialTheme.colorScheme.tertiary
                     )
                 )
-                Text("**** 1234",
+                Text("● ● ● ● 1234",
                     style = TextStyle(
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
@@ -144,23 +153,30 @@ fun TarjetasScreen(){
                 horizontalAlignment = Alignment.End
 
             ) {
-                Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "icon")
+                Icon(imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = "icon",
+                    modifier = Modifier.padding(5.dp)
+                )
             }
         }
         HorizontalDivider(thickness = 1.dp)
         Row(
             modifier = Modifier
-                .padding(16.dp),
+                .padding(5.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
             Icon(
-                imageVector = Icons.Default.AccountBox,
+                painter = painterResource(id = R.drawable.physical_card),
                 contentDescription = "icon",
                 modifier = Modifier
-                    .size(54.dp),
-                tint = MaterialTheme.colorScheme.primary
+                    .size(65.dp),
+                tint = Color.Unspecified
             )
-            Column{
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 10.dp),
+            ){
                 Text("Tarjeta Fisica",
                     style = TextStyle(
                         fontSize = 12.sp,
@@ -168,7 +184,7 @@ fun TarjetasScreen(){
                         color = MaterialTheme.colorScheme.tertiary
                     )
                 )
-                Text("**** 1234",
+                Text("● ● ● ● 1234",
                     style = TextStyle(
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
@@ -182,7 +198,10 @@ fun TarjetasScreen(){
                 horizontalAlignment = Alignment.End
 
             ) {
-                Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "icon")
+                Icon(imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = "icon",
+                    modifier = Modifier.padding(5.dp)
+                )
             }
         }
         HorizontalDivider(thickness = 1.dp)
@@ -197,21 +216,22 @@ fun TarjetasScreen(){
                 style = TextStyle(
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
-                )
+                ),
+                modifier = Modifier.padding(bottom = 30.dp)
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ){
 
                 Icon(
-                    imageVector = Icons.Default.ShoppingCart,
+                    painter = painterResource(id = R.drawable.recharge_account),
                     contentDescription = "icon",
                     modifier = Modifier
                         .size(54.dp),
                     tint = MaterialTheme.colorScheme.primary
                 )
 
-                Text(text = "Recargar")
+                Text(text = "Recargar", modifier = Modifier.padding(start = 10.dp))
 
                 Column(
                     modifier = Modifier

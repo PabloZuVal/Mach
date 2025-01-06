@@ -17,22 +17,36 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pablozv.mach.R
 import com.pablozv.mach.ui.theme.MachTheme
 
 @Composable
 fun RectangleCard(
     title: String = "Default title",
     description: String = "Default description",
-    icon: ImageVector = Icons.Default.AccountCircle, ){
+    iconName: String = ""){
+
+    val context = LocalContext.current
+    val iconId = remember(iconName) {
+        if (iconName.isEmpty()) {
+            0
+        } else {
+            context.resources.getIdentifier(iconName, "drawable", context.packageName)
+        }
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -56,11 +70,17 @@ fun RectangleCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Icon(imageVector = icon, contentDescription ="",
-                modifier = Modifier
-                    .size(40.dp),
+//            Icon(imageVector = icon, contentDescription ="",
+//                modifier = Modifier
+//                    .size(40.dp),
+//                tint = MaterialTheme.colorScheme.primary
+//
+//            )
+            Icon(
+                painter = if(iconId != 0) painterResource(id = iconId) else painterResource(id = R.drawable.icon1),
+                contentDescription = "",
+                modifier = Modifier.size(50.dp),
                 tint = MaterialTheme.colorScheme.primary
-
             )
             Spacer(modifier = Modifier.size(16.dp))
 

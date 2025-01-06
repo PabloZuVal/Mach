@@ -1,6 +1,7 @@
 package com.pablozv.mach.core.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -16,20 +17,23 @@ import com.pablozv.mach.feature.voucher.ui.VoucherScreen
 @Composable
 fun NavigationController(
     navController: NavHostController,
-    bottonSheetController: BottonSheetController
+    bottonSheetController: BottonSheetController,
+    showTopBarController: MutableState<Boolean>
 ){
 
     val routeItem = listOf(
         NavComposable(
             route = "Inicio",
-            content = { InicioScreen(
-                bottonSheetController = bottonSheetController,
-            ) }
+            content = {
+                showTopBarController.value = true
+                InicioScreen(bottonSheetController = bottonSheetController,)
+            }
         ),
         NavComposable(
             route = "Transferir",
-            content = { TransferenciaScreen(
-                onNavigateToVouchers = { navController.navigate("Vouchers") },
+            content = {
+                showTopBarController.value = false
+                TransferenciaScreen(onNavigateToVouchers = { navController.navigate("Vouchers") },
             ) }
         ),
         NavComposable(
