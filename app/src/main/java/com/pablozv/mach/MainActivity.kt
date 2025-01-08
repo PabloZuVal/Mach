@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.pablozv.mach.ui.theme.MachTheme
 import com.pablozv.mach.core.navigation.BottomNavigationMenu
 import com.pablozv.mach.ui.composable.TopBar
@@ -30,21 +31,22 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             MachTheme {
-                val navController = rememberNavController()//
+                val navController = rememberNavController()
                 val bottonSheetController = remember { BottonSheetController() }
                 val showTopBarController = remember { mutableStateOf(true) }
 
-                // Set the status bar color
-                val statusBarColor = if (showTopBarController.value) {
-                    Color(0xFF6200EE) // Reemplaza con el color de tu TopBar
-                } else {
-                    Color(0xFF000000) // Reemplaza con el color deseado para TransferenciaScreen
-                }
-                window.statusBarColor = statusBarColor.toArgb()
+                val systemUiController = rememberSystemUiController()
+                val statusBarColor = Color(0xFF6200EE) // Define el color deseado
+
+                // Cambia el color de la barra de estado
+                systemUiController.setStatusBarColor(
+                    color = statusBarColor,
+                    darkIcons = false // Usa íconos claros o oscuros según el color del fondo
+                )
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    topBar = { if (showTopBarController.value) { TopBar() }},
+//                    topBar = { if (showTopBarController.value) { TopBar() }},
                     bottomBar = { BottomNavigationMenu(navController = navController) }
                 ) { innerPadding ->
                     Column (

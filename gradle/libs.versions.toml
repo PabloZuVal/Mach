@@ -26,6 +26,9 @@ coroutineVersion = "1.7.1"
 kotlinCompilerExtension = "1.5.1"
 ksp = "1.9.0-1.0.13"
 
+systemUiController = "0.30.1"
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -60,6 +63,7 @@ okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhtt
 okhttp-url-connector = { group = "com.squareup.okhttp3", name = "okhttp-urlconnection", version.ref = "okhttp3Version"}
 okhttp-loggin-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3Version"}
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutineVersion"}
+systemUiController = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "systemUiController" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
