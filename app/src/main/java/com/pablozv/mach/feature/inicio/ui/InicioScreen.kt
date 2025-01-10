@@ -26,18 +26,23 @@ import com.pablozv.mach.ui.composable.EvolveAccountCard
 import com.pablozv.mach.ui.composable.CardAccount
 import com.pablozv.mach.ui.composable.ScrollAccounts
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.pablozv.mach.SharedViewModel
 import com.pablozv.mach.core.navigation.BottonSheetController
 import com.pablozv.mach.ui.composable.HomeCardSection
 import com.pablozv.mach.ui.composable.ScrollImages
 import com.pablozv.mach.ui.composable.ShowMore
+import com.pablozv.mach.ui.composable.TopBar
 
 @Composable()
 fun InicioScreen(
     viewModel: InicioViewModel = hiltViewModel(),
-    bottonSheetController: BottonSheetController
+    bottonSheetController: BottonSheetController,
+    sharedViewModel: SharedViewModel = hiltViewModel()
 ){
     val userData by viewModel.userData.collectAsState()
     val isLoading = userData == null
+
+
 
     Box(
         modifier = Modifier
@@ -46,13 +51,13 @@ fun InicioScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(95.dp)
+                .height(80.dp)
                 .background(MaterialTheme.colorScheme.primary)
         )
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
         ){
             item {
 
@@ -129,6 +134,9 @@ fun InicioScreen(
 @Composable
 fun PreviewInicioScreen(){
     MachTheme {
-        InicioScreen(bottonSheetController = BottonSheetController())
+//        InicioScreen(
+//            bottonSheetController = BottonSheetController(),
+//            sharedViewModel = SharedViewModel(),
+//        )
     }
 }

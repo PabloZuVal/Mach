@@ -66,10 +66,10 @@ fun CardAccount(
                 Spacer(modifier = Modifier.size(8.dp))
 
                 Text(
-                    text = numeroTarjetaVirtual.chunked(4).joinToString(" "),
+                    text = "● ● ● ● " + numeroTarjetaVirtual.takeLast(4).chunked(1).joinToString(" "),
                     color = MaterialTheme.colorScheme.onPrimary,
                     style = TextStyle(
-                        fontSize = 12.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.Normal
                     )
                 )
@@ -95,6 +95,8 @@ fun CardAccount(
 @Composable
 fun PreviewCardAccount(){
     MachTheme {
-        EvolveAccountCard()
+        CardAccount(
+            numeroTarjetaVirtual = "1234 5678 9012 3456"
+        )
     }
 }

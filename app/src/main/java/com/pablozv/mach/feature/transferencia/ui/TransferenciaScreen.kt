@@ -35,24 +35,6 @@ fun TransferenciaScreen(
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(95.dp)
-                .background(MaterialTheme.colorScheme.primary)
-        ) {
-            Text(
-                "Transferencias",
-                modifier = Modifier
-                    .padding(30.dp)
-                    .align(Alignment.CenterStart),
-                color = Color.White,
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            )
-        }
         Column(
             modifier = Modifier.padding(16.dp),
         ) {
