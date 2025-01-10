@@ -31,9 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pablozv.mach.R
 import com.pablozv.mach.ui.theme.MachTheme
-import com.pablozv.mach.ui.composable.MeetMachCard
 import com.pablozv.mach.ui.composable.RectangleCard
-import com.pablozv.mach.ui.composable.SquareCard
+import com.pablozv.mach.ui.composable.ScrollInvest
 
 @Composable
 fun InversionesScreen(){
@@ -132,14 +131,7 @@ fun InversionesScreen(){
             )
         )
         Spacer(modifier = Modifier.size(16.dp))
-//        Text(
-//            text = "Para lograr tus metas ahorrando en **Cuenta Futuro** o invirtiendo en **Fondos Mutuos.**",
-//            style = TextStyle(
-//                fontSize = 15.sp,
-//                fontWeight = FontWeight.W300,
-//                color = Color.Black
-//            )
-//        )
+
         Text(
             text = buildAnnotatedString {
                 append("Para lograr tus metas ahorrando en ")
@@ -166,11 +158,13 @@ fun InversionesScreen(){
             "icon2_2",
         )
 
-        //add scroll of cards
-        
+        Spacer(modifier = Modifier.size(16.dp))
 
-        Spacer(modifier = Modifier.size(32.dp))
-        Text("Mis Productos")
+        ScrollInvest()
+        Spacer(modifier = Modifier.size(16.dp))
+
+        Text("Asesoramiento financiero")
+
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -180,7 +174,6 @@ fun InversionesScreen(){
                 modifier = Modifier.fillMaxWidth()
             )
         }
-//        Spacer(modifier = Modifier.size(16.dp))
 
     }
 }
