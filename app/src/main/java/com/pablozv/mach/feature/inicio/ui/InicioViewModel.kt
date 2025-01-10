@@ -15,6 +15,7 @@ class InicioViewModel @Inject constructor(
     private val getUserDataUseCase: GetUserDataUseCase
 ) : ViewModel() {
     private val _userData = MutableStateFlow<UserData?>(null)
+    private var isDataLoaded = false
     val userData: StateFlow<UserData?> = _userData
 
     init {
@@ -22,10 +23,12 @@ class InicioViewModel @Inject constructor(
     }
 
     private fun loadUserData() {
+        if (isDataLoaded) return
         viewModelScope.launch {
             try {
                 val data = getUserDataUseCase()
                 _userData.value = data
+                isDataLoaded = true
             } catch (e: Exception) {
                 // Manejar el error según necesites
 
