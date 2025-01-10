@@ -2,6 +2,7 @@ package com.pablozv.mach.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,13 +13,15 @@ import com.pablozv.mach.feature.splash.ui.SplashScreen
 import com.pablozv.mach.feature.tarjetas.ui.TarjetasScreen
 import com.pablozv.mach.feature.transferencia.ui.TransferenciaScreen
 import com.pablozv.mach.feature.voucher.ui.VoucherScreen
+import com.pablozv.mach.ui.composable.TopBar
 
 
 @Composable
 fun NavigationController(
     navController: NavHostController,
     bottonSheetController: BottonSheetController,
-    showTopBarController: MutableState<Boolean>
+    showTopBarController: MutableState<Boolean>,
+    topBarConfig: MutableState<@Composable () -> Unit>
 ){
 
     val routeItem = listOf(
@@ -26,27 +29,49 @@ fun NavigationController(
             route = "Inicio",
             content = {
                 showTopBarController.value = true
-                InicioScreen(bottonSheetController = bottonSheetController,)
+                topBarConfig.value = {
+                    TopBar(title = "Inicio")
+                }
+                InicioScreen(bottonSheetController = bottonSheetController)
             }
         ),
         NavComposable(
             route = "Transferir",
             content = {
-                showTopBarController.value = false
+                showTopBarController.value = true
+                topBarConfig.value = {
+                    TopBar(title = "Transferir", showBackButton = true, onBackClick = { navController.popBackStack() })
+                }
                 TransferenciaScreen(onNavigateToVouchers = { navController.navigate("Vouchers") },
             ) }
         ),
         NavComposable(
             route = "Tarjetas",
-            content = { TarjetasScreen() }
+            content = {
+                topBarConfig.value = {
+                    TopBar(title = "Tarjetas")
+                }
+                TarjetasScreen()
+            }
         ),
         NavComposable(
             route = "Inversiones",
-            content = { InversionesScreen() }
+            content = {
+                topBarConfig.value = {
+                    TopBar(title = "Inversiones")
+                }
+                InversionesScreen()
+            }
         ),
         NavComposable(
             route = "Voucher",
-            content = { VoucherScreen() }
+            content = {
+                showTopBarController.value = true
+                topBarConfig.value = {
+                    TopBar(title = "Voucher")
+                }
+                VoucherScreen()
+            }
         ),
     )
 

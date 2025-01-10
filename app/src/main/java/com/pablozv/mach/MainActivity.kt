@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val bottonSheetController = remember { BottonSheetController() }
                 val showTopBarController = remember { mutableStateOf(true) }
+                val topBarConfig = remember { mutableStateOf<@Composable () -> Unit>({}) }
 
                 val systemUiController = rememberSystemUiController()
                 val statusBarColor = Color(0xFF6200EE) // Define el color deseado
@@ -46,7 +48,7 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-//                    topBar = { if (showTopBarController.value) { TopBar() }},
+                    topBar = { if (showTopBarController.value) { topBarConfig.value() } },
                     bottomBar = { BottomNavigationMenu(navController = navController) }
                 ) { innerPadding ->
                     Column (
@@ -58,7 +60,8 @@ class MainActivity : ComponentActivity() {
                         NavigationController(
                             navController = navController,
                             bottonSheetController = bottonSheetController,
-                            showTopBarController = showTopBarController)
+                            showTopBarController = showTopBarController,
+                            topBarConfig = topBarConfig)
 
                         BottomSheet(
                             isSheetVisible = bottonSheetController.isVisible,
